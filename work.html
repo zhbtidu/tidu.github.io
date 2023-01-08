@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>
+   动态DOM编程起点和基础
+</title>
+  <style type="text/css">
+	div{
+	  width:100px;
+	  height:100px;
+    border-radius: 100%;
+	  background-color:rgba(128, 128, 128,0.4);
+    display: inline-block;
+    padding: 10px; 
+    margin: 10px;
+    text-align: center;
+    transition: all 5s;
+    position: absolute;
+    left:200px;
+    top:200px;
+	}
+  div:hover{
+    background-color: #a4ea21;
+    color: rgb(126, 3, 234);
+  }
+  </style>
+ </head>
+ <body>
+  <script type="text/javascript">
+    var s = '绝代有佳人，幽居在空谷，自云良家人，零落依草木。';
+    for (var i = 0; i < 100; i++) {
+      var divDom = document.createElement('div');
+      divDom.textContent = s;
+      randPositionDiv(divDom);
+      divDom.onmouseover = function(divDom){
+        var x = Math.floor(Math.random() * (window.innerWidth-150));
+        var y = Math.floor(Math.random() * (window.innerHeight-150));
+        this.style.left = x + 'px';
+        this.style.top = y + 'px';
+      }
+
+      divDom.onclick =function(){
+        this.style.left = 0 ;
+        this.style.top = 0 ;
+      }
+
+      divDom.ondblclick= function(){
+        x= (Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0'));
+        this.style.backgroundColor = "#"+x;
+        this.style.opacity = 0.7;
+
+      }
+
+    document.body.appendChild(divDom);
+  }
+    function randPositionDiv(dom) {
+        var x = Math.floor(Math.random() * (window.innerWidth-150));
+        var y = Math.floor(Math.random() * (window.innerHeight-150));
+        dom.style.left = x + 'px';
+        dom.style.top = y + 'px';
+    }
+
+  </script>
+ </body>
+</html>
